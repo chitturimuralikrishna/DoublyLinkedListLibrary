@@ -39,7 +39,8 @@ This repository contains a simple and efficient implementation of a doubly linke
    ```c
    #include "dll.h"
 2. **Link the Shared Library:**
-   When compiling your program, link against libdll.so:
+   When compiling your program, link against `libdll.so`:
+   ```c 
    gcc your_program.c -L. -ldll -Wl,-rpath=.
 
 
