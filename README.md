@@ -38,4 +38,8 @@ This repository contains a simple and efficient implementation of a doubly linke
    In your C program, include the header file `dll.h`:
    ```c
    #include "dll.h"
+2. **Link the Shared Library:**
+   When compiling your program, link against libdll.so:
+   gcc your_program.c -L. -ldll -Wl,-rpath=.
+
 
