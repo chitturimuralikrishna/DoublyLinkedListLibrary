@@ -10,6 +10,7 @@ struct node {
 	NODE_DLL dll;
 };
 
+unsigned long offset = GETOFFSET(node, dll)
 
 int main()
 {
@@ -48,82 +49,66 @@ int main()
    	}
 
 
-   	unsigned long offset = (unsigned long) (&(((node *)0)->dll));
    	printf("offset %ld\n", offset);
 
 	NODE_DLL *temp = head_ptr;
+
     printf("\nNode list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
+	DLL_TRAVERSE_START(head_ptr, temp)
+	{   
 		printf("%d ",((node *)((char *)temp - offset))->data);
 	}
-    
+	DLL_TRAVERSE_END
+
+
     printf("\n\nDelete node Head:\n");     	
-   	if(DeleteFromDll(head_ptr, head_ptr) == 0) {
-		printf("Delete failed\n");
-	}
-	temp = head_ptr;
+   	DeleteFromDll(head_ptr, head_ptr);
+
     printf("Node list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
-		printf(" %d ",((node *)((char *)temp - offset))->data);
-	}
+	DLL_TRAVERSE_START(head_ptr, temp)
+		printf("%d ",((node *)((char *)temp - offset))->data);
+	DLL_TRAVERSE_END
  
+
 	printf("\n\nDelete node %d:\n", node1->data);
-   	if(DeleteFromDll(head_ptr, &node1->dll) == 0) {
-		printf("Delete failed\n");
-		return 1;
-	} else {
-		free(node1);
-	}
-	temp = head_ptr;
+   	DeleteFromDll(head_ptr, &node1->dll);
+	free(node1);
+
     printf("Node list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
-		printf(" %d ",((node *)((char *)temp - offset))->data);
-	}
+	DLL_TRAVERSE_START(head_ptr, temp)
+		printf("%d ",((node *)((char *)temp - offset))->data);
+	DLL_TRAVERSE_END
+
 
 	printf("\n\nDelete node %d:\n", node3->data);
-   	if(DeleteFromDll(head_ptr, &node3->dll) == 0) {
-		printf("Delete failed\n");
-		return 1;
-	} else {
-		free(node3);
-	}
-	temp = head_ptr;
+   	DeleteFromDll(head_ptr, &node3->dll);
+	free(node3);
+
     printf("Node list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
-		printf(" %d ",((node *)((char *)temp - offset))->data);
-	}
+	DLL_TRAVERSE_START(head_ptr, temp)
+		printf("%d ",((node *)((char *)temp - offset))->data);
+	DLL_TRAVERSE_END
+
 
 	printf("\n\nDelete node %d:\n", node4->data);
-   	if(DeleteFromDll(head_ptr, &node4->dll) == 0) {
-		printf("Delete failed\n");
-		return 1;
-	} else {
-		free(node4);
-	}
-	temp = head_ptr;
+   	DeleteFromDll(head_ptr, &node4->dll);
+	free(node4);
+
     printf("Node list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
-		printf(" %d ",((node *)((char *)temp - offset))->data);
-	}
+	DLL_TRAVERSE_START(head_ptr, temp)
+		printf("%d ",((node *)((char *)temp - offset))->data);
+	DLL_TRAVERSE_END
+
 
 	printf("\n\nDelete node %d:\n", node2->data);
-   	if(DeleteFromDll(head_ptr, &node2->dll) == 0) {
-		printf("Delete failed\n");
-		return 1;
-	} else {
-		free(node2);
-	}
-	temp = head_ptr;
-    printf("Node list: ");
-    while(temp->next != head_ptr) {
-		temp = temp->next;
-		printf(" %d ",((node *)((char *)temp - offset))->data);
-	}
+   	DeleteFromDll(head_ptr, &node2->dll);
+	free(node2);
 
+    printf("Node list: ");
+	DLL_TRAVERSE_START(head_ptr, temp)
+		printf("%d ",((node *)((char *)temp - offset))->data);
+	DLL_TRAVERSE_END
+
+    printf("\n");
 	return 0;
 }
